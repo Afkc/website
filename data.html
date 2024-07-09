@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEM PEMANTAUAN AIR TAMBAK UDANG</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <header class="header">
+        <div class="text-box">
+            <h1 class="heading">
+                SISTEM PEMANTAUAN AIR TAMBAK UDANG
+            </h1>
+            <a href="Results.html" class="btn btn-white">Sensors Readings</a>
+        </div>
+
+    </header>
+    <main>
+        <section class="section-about">
+            <div class="center-text">
+                <h2 class="heading-sec">
+                    About The Project
+                </h2>
+            </div>
+            <div class="row1">
+                <div class="col-1-of-2">
+                    <h3 class="heading-third">
+                        What is water monitoring system?
+                    </h3>
+                    <p class="paragraph">
+                        A water monitoring system is a set of tools and processes used to measure and analyze water
+                        parameters. It includes sensors and instruments that collect data on factors like temperature,
+                        pH, and turbidity. The data is transmitted for analysis and can enable
+                        real-time monitoring and quick response to changes. Water monitoring systems generate reports
+                        and support decision-making for water resource management. Their purpose is to ensure the
+                        sustainable use of water resources and protect the environment and human health.
+                    </p>
+                    <a href="More.html" class="btn-text">Learn More &rarr;</a>
+                </div>
+                <div class="col-1-of-2">
+                    <div class="composition">
+                        <img src="https://blog.eagle.io/hubfs/Iot%20water%20monitoring%20software%20platform.jpg"
+                            alt="photo1" class="composition__photo composition__photo--p1">
+                        <img src="data:image/jpeg;base64,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"
+                            alt="photo2" class="composition__photo composition__photo--p2">
+                        <img src="https://www.epa.gov/system/files/styles/gallery_medium/private/images/2023-06/Get%20Data%20Hand%20in%20water%20with%20drops.jpg?h=64cd3a75&itok=aaMldG5n"
+                            alt="photo3" class="composition__photo composition__photo--p3">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+    
+
+</body>
+
+</html>

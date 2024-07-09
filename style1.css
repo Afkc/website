@@ -1,0 +1,315 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px;
+
+
+}
+
+.text-box {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(31, 221, 212, 0.8), rgba(11, 65, 157, 0.8)), url(https://endlesswaters.com/wp-content/uploads/2020/05/Purified-Water.jpg);
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+
+}
+
+.heading {
+  color: #fff;
+  text-transform: uppercase;
+  display: block;
+  font-size: 60px;
+  font-weight: 500;
+  text-align: center;
+  letter-spacing: 15px;
+  animation-name: moveInLeft;
+  animation-duration: 5s;
+  animation-timing-function: ease-out;
+  backface-visibility: hidden;
+  margin-bottom: 20px;
+  line-height: 80px;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all 0.2s;
+
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+
+}
+
+.section-about {
+  background-color: #f0efef;
+  padding: 25rem 0;
+  padding-bottom: 1rem;
+  margin-top: -50vh;
+  margin-bottom: 10px;
+}
+
+.center-text {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.col-1-of-2 {
+  float: left;
+  width: 50%;
+  padding-left: 5rem;
+}
+
+.heading-third {
+  color: #4b4c4d;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: 1.2rem;
+
+}
+
+.paragraph:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.btn-text:link,
+.btn-text:visited {
+  font-size: 1.1rem;
+  color: rgba(11, 65, 157);
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(11, 65, 157);
+  padding: 3px;
+  transition: all .2s;
+}
+
+.btn-text:hover {
+  background-color: rgba(11, 65, 157);
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+  transform: translateY(-2px);
+
+
+}
+
+.btn-text:active {
+  box-shadow: 0 .5rem rem rgba(0, 0, 0, .2);
+  transform: translateY(0);
+
+}
+
+.composition {
+  position: relative;
+}
+
+.composition__photo {
+  width: 55%;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .2);
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+  transition: all .2s;
+
+}
+
+.composition__photo--p1 {
+  left: 0;
+  top: -2rem;
+}
+
+.composition__photo--p2 {
+  right: 2rem;
+  top: 2rem;
+}
+
+.composition__photo--p3 {
+  left: 20%;
+  top: 10rem;
+}
+
+.composition__photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .5);
+  z-index: 20;
+  outline: 1.5rem solid #17a2b8;
+}
+
+.composition:hover .composition__photo:not(:hover) {
+  transform: scale(0.9);
+}
+
+/* Clear floats after the columns */
+.row1:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.heading-sec {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: linear-gradient(to right, rgba(31, 221, 212, 0.8), rgba(11, 65, 157, 0.8));
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: .2rem;
+  transition: all .2s;
+}
+
+.heading-sec:hover {
+  transform: skewY(2deg) skewX(15deg) scale(1.1);
+  text-shadow: .5rem 1rem 2rem rgba(0, 0, 0, .2);
+}
+
+
+
+/*footer*/
+.col-lg-3 {
+  text-align: center;
+}
+
+.footer-clean {
+  padding: 50px 0;
+  background-color: #f1f1f1;
+  color: #4b4c4d;
+}
+
+.footer-clean h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.footer-clean ul {
+  float: left;
+  padding: 0;
+  list-style: none;
+  line-height: 1.6;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.footer-clean ul a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.footer-clean ul a:hover {
+  opacity: 1;
+}
+
+
+.footer-clean .item.social {
+  text-align: center;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align: center;
+  }
+}
+
+.footer-clean .item.social>a {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-left: 10px;
+  margin-top: 22px;
+  color: inherit;
+  opacity: 0.75;
+}
+
+.footer-clean .item.social>a:hover {
+  opacity: 0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social>a {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social>a {
+    margin-top: 10px;
+  }
+}
+
+.footer-clean .copyright {
+  margin-top: 14px;
+  margin-bottom: 0;
+  font-size: 13px;
+  opacity: 0.6;
+}
+

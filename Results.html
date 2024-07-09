@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style1.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap4.css" />
+  <title>Sensors Readings</title>
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
+  <script src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap4.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <section class="section-about">
+    <div class="center-text mb-5">
+      <h2 class="heading-sec">Sensors Readings</h2>
+    </div>
+    <div class="d-flex justify-content-end mr-2">
+      <button id="unduh" type="button" class="btn btn-primary">
+        Download Data
+      </button>
+    </div>
+    <div class="p-3 mt-2 mx-2 bg-white">
+      <table id="sensor" class="table table-striped table-bordered w-100"></table>
+    </div>
+    <div id="table1" class="container d-flex justify-content-center">
+      <table class="table table-striped table-bordered table-hover">
+        <!-- <thead class="thead-light" style="display: none">
+            <tr>
+              <th>No</th>
+              <th>Tanggal</th>
+              <th>Jam/Waktu</th>
+              <th>Temperatur</th>
+              <th>Kekeruhan</th>
+              <th>Ph</th>
+            </tr>
+          </thead> -->
+        <tbody id="tbody1" style="display: none"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC3e64oq_v0hBstX96R4XgTREZuM2BISSw",
+      authDomain: "skripsi-907e0.firebaseapp.com",
+      databaseURL: "https://skripsi-907e0-default-rtdb.firebaseio.com",
+      projectId: "skripsi-907e0",
+      storageBucket: "skripsi-907e0.appspot.com",
+      messagingSenderId: "1061898784024",
+      appId: "1:1061898784024:web:f6ab04d4152c8b9cffe26d",
+      measurementId: "G-KBSG0H74KF",
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // Get reference to the database
+    const db = firebase.database();
+    const readingsRef = db.ref("sensorData");
+    // Get data
+    function SelectAllData() {
+      readingsRef
+        .orderByChild("timestamp")
+        .on("value", function (AllRecords) {
+          var records = [];
+          AllRecords.forEach(function (CurrentRecord) {
+            records.push(CurrentRecord);
+          });
+          wtrNo1 = 0;
+          idx = 0;
+          let body = document.getElementById("tbody1");
+          body.innerHTML = "";
+          while (sensorData.length > 0) {
+            sensorData.pop();
+          }
+          records.forEach(function (CurrentRecord) {
+            var pH = CurrentRecord.val().pH ?? null;
+            var tds = CurrentRecord.val().kekeruhan ?? null;
+            var temp = CurrentRecord.val().temperature ?? null;
+            var tur = CurrentRecord.val().kekeruhan ?? null;
+            var tbd = CurrentRecord.val().kekeruhan ?? null;
+            var timestamp = CurrentRecord.val().waktu ?? null;
+            var time = CurrentRecord.val().Time ?? null; // Use the 'Time' field for the second table
+            var day = CurrentRecord.val().tanggal ?? null;
+            // AddItemsToTable1(tbd, pH, tds, temp, tur, timestamp, day);
+            print(tbd, pH, tds, temp, tur, timestamp, day);
+          });
+
+          new DataTable("#sensor", {
+            destroy: true,
+            createdRow: function (row, data, dataIndex) {
+              if (data[3] > 35 || data[3] < 13) {
+                $(row).addClass("text-danger");
+                var snd = new Audio(
+                  "/WhatsApp Audio 2023-06-21 at 16.44.52.mpeg"
+                );
+                // snd.play();
+              }
+              if (data[4] > 50 || data[4] < 20) {
+                $(row).addClass("text-danger");
+                var snd = new Audio(
+                  "/WhatsApp Audio 2023-06-21 at 16.44.52.mpeg"
+                );
+                // snd.play();
+              }
+              if (data[5] > 8.5 || data[5] < 6.5) {
+                $(row).addClass("text-danger");
+                var snd = new Audio(
+                  "/WhatsApp Audio 2023-06-21 at 16.44.52.mpeg"
+                );
+                // snd.play();
+              }
+            },
+            columns: [
+              { title: "No" },
+              { title: "Tanggal" },
+              { title: "Jam/Waktu" },
+              { title: "Temperatur" },
+              { title: "Kekeruhan" },
+              { title: "Ph" },
+            ],
+            data: sensorData,
+          });
+          var element = document.getElementsByTagName("colgroup"),
+            index;
+
+          for (index = element.length - 1; index >= 0; index--) {
+            element[index].parentNode.removeChild(element[index]);
+          }
+        });
+    }
+
+    window.onload = SelectAllData;
+
+    // Filling table 1 (Temperature, Turbidity, pH, TDS, Day, and Timestamp)
+    var wtrNo1 = 0;
+
+    function AddItemsToTable1(tbd, pH, tds, temp, tur, timestamp, day) {
+      var tbody1 = document.getElementById("tbody1");
+      var trow1 = document.createElement("tr");
+      var td11 = document.createElement("td");
+      var td21 = document.createElement("td");
+      var td31 = document.createElement("td");
+      var td41 = document.createElement("td");
+      var td51 = document.createElement("td");
+      var td61 = document.createElement("td");
+      var td71 = document.createElement("td");
+      var td81 = document.createElement("td");
+
+      td11.innerHTML = ++wtrNo1;
+      td21.innerHTML = day; // Display the 'Day' field in the second column
+      td31.innerHTML = timestamp; // Display the 'timestamp' field in the third column
+      td41.innerHTML = temp;
+      td51.innerHTML = tbd; // Display the 'WL' field (tbder level) in the third column
+      td61.innerHTML = pH;
+
+      // Check pH value
+      if (pH > 8.5 || pH < 6.5) {
+        td61.classList.add("text-danger");
+        var snd = new Audio("/WhatsApp Audio 2023-06-21 at 16.44.52.mpeg");
+        snd.play();
+      }
+
+      // Check TDS value
+      if (tds < 300 || tds > 15000) {
+        td71.classList.add("text-danger");
+        var snd = new Audio("/WhatsApp Audio 2023-06-21 at 16.44.52.mpeg");
+        snd.play();
+      }
+
+      // Check turbidity value
+      if (tbd > 15000 || tbd < 1) {
+        td51.classList.add("text-danger");
+        var snd = new Audio("/WhatsApp Audio 2023-06-21 at 16.44.52.mpeg");
+        snd.play();
+      }
+
+      // Check temp
+      if (temp > 35 || temp < 13) {
+        td41.classList.add("text-danger");
+        var snd = new Audio("/WhatsApp Audio 2023-06-21 at 16.44.52.mpeg");
+        snd.play();
+      }
+
+      trow1.appendChild(td11);
+      trow1.appendChild(td21);
+      trow1.appendChild(td31);
+      trow1.appendChild(td41);
+      trow1.appendChild(td51);
+      trow1.appendChild(td61);
+      tbody1.appendChild(trow1);
+    }
+    var idx = 0;
+    let sensorData = [];
+    function print(tbd, pH, tds, temp, tur, timestamp, day) {
+      let row = [];
+      row.push(++idx);
+      row.push(day);
+      row.push(timestamp);
+      row.push(temp);
+      row.push(tbd);
+      row.push(pH);
+      sensorData.push(row);
+    }
+    // export csv
+    document.getElementById("unduh").onclick = function exportCsv() {
+      //define the heading for each row of the data
+      var csv = "No;Tanggal;Jam/Waktu;Temperatur;Kekeruhan;Ph\n";
+
+      //merge the data with CSV
+      sensorData.forEach(function (row) {
+        csv += row.join(";");
+        csv += "\n";
+      });
+
+      var hiddenElement = document.createElement("a");
+      hiddenElement.href = "data:text/csv;charset=utf-8," + encodeURI(csv);
+      hiddenElement.target = "_blank";
+      const date = String(new Date());
+      //provide the name for the CSV file to be downloaded
+      hiddenElement.download = `Data_${date}.csv`;
+      hiddenElement.click();
+    };
+  </script>
+</body>
+
+</html>
